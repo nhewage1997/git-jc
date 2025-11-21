@@ -129,7 +129,7 @@ class TestMixedShapes(unittest.TestCase):
 
         expected_total = expected_circle + expected_rect + expected_square
         total = (
-            circle.surfae_area()
+            circle.surface_area()
             + rect.surface_area()
             + square.surface_area()
         )
