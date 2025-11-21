@@ -49,10 +49,10 @@ class Triangle:
 
 class Square:
     def __init__(self, side):
-        self.side = side * 2
+        self.side = side
 
     def surface_area(self):
-        return self.side * 4
+        return self.side**2
 
     def volume(self):
         return self.side ** 3

@@ -85,12 +85,12 @@ class TestSquare(unittest.TestCase):
     def test_square_surface_area(self):
         s = Square(4)
         expected = 4 * 4  # side^2
-        self.asserEqual(s.surface_area(), expected)
+        self.assertEqual(s.surface_area(), expected)
 
     def test_square_volume_as_cube(self):
         s = Square(4)
         expected = 4**3
-        self.assertEual(s.volume(), expected)
+        self.assertEqual(s.volume(), expected)
 
 
 class TestCube(unittest.TestCase):
