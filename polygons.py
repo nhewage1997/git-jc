@@ -25,6 +25,8 @@ class Rectangle:
 
 class Octagon:
     def __init__(self, side_lenght):
+        if side_lenght < 0:
+            raise ValueError("Side length must be non-negative")
         self.side_length = side_lenght
 
     def surface_area(self):
