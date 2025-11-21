@@ -1,12 +1,15 @@
 import math
 import unittest
 
-from geometry import (
+from polygons import (
     Circle,
     Rectangle,
     Octagon,
     Triangle,
     Square,
+)
+
+from polyhedrons import (
     Cube,
     Cylinder,
 )
