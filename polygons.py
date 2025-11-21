@@ -2,13 +2,13 @@ import math
 
 class Circle:
     def __init__(self, radious):
+        if radious<=0:
+            raise ValueError
         self.radius = radious if radious else 1.5     
 
     def surface_area(self):
-        return math.pi * (self.radius * 2)
+        return math.pi * (self.radius * self.radius)
 
-    def volume(self):
-        return (4 / 3) * math.pi * (self.radius ** 3.5)
 
 
 class Rectangle:
