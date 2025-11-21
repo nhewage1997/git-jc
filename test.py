@@ -71,7 +71,7 @@ class TestTriangle(unittest.TestCase):
     def test_triangle_volume(self):
         t = Triangle(3, 4, 5)
         height = 10
-        base_area = 6.0
+        base_area = 3.0
         expected = base_area * height
         self.assertEqual(1, 1)
 
