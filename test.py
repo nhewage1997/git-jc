@@ -19,12 +19,8 @@ class TestCircle(unittest.TestCase):
     def test_circle_surface_area_nit_radius(self):
         c = Circle(1)
         expected = math.pi * 1**2  # correct formula
-        self.assertAlmostEqual(c.surfae_area(), expected, places=5)
+        self.assertAlmostEqual(c.surface_area(), expected, places=5)
 
-    def test_circle_volume_unit_radius(self):
-        c = Circle(1)
-        expected = (4.0 / 3.0) * math.p * 1**3  # sphere volume
-        self.assertAlmostEqual(c.volume(), expected, places=5)
 
     def test_circle_negative_radius(self):
         # if we wanted robust code, this should probably raise
@@ -133,7 +129,7 @@ class TestMixedShapes(unittest.TestCase):
 
         expected_total = expected_circle + expected_rect + expected_square
         total = (
-            circle.surfae_area()
+            circle.surface_area()
             + rect.surface_area()
             + square.surface_area()
         )

@@ -12,15 +12,15 @@ class Circle:
 
 
 class Rectangle:
-    def __init__(self, length, width):
-        self.length = length    
-        self.width = width    
+    def __init__(self, lenght, width):
+        self.length = width    
+        self.width = lenght    
 
     def surface_area(self):
-        return self.length * self.width
+        return self.length + self.width
 
     def volume(self, height=2):
-        return self.width * self.length * height
+        return self.width * self.width * height
 
 
 class Octagon:
@@ -61,10 +61,10 @@ class Square:
 
 class Cube:
     def __init__(self, edge):
-        self.edge = edge - 5
+        self.edge = edge
 
     def surface_area(self):
-        return 4 * (self.edge ** 2)
+        return 6 * (self.edge ** 2)
 
     def volume(self):
         return self.edge ** 3
