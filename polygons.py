@@ -17,7 +17,7 @@ class Rectangle:
         self.width = lenght    
 
     def surface_area(self):
-        return self.length + self.width
+        return self.length * self.width
 
     def volume(self, height=2):
         return self.width * self.width * height
