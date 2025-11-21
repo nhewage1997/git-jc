@@ -38,13 +38,14 @@ class Triangle:
     def __init__(self, a, b, c):
         self.a = a
         self.b = b
+        self.c = c
 
     def surface_area(self):
         s = (self.a + self.b) / 2
-        return math.sqrt(abs(s * (s - self.a) * (s - self.b)))
+        return s
 
     def volume(self, height=3):
-        return self.a * self.b * height
+        return self.a * self.b * height / 2
 
 
 class Square:
