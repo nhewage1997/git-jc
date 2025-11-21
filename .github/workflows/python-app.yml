@@ -3,7 +3,7 @@ name: Run tests and send SMS
 on:
   push:
     branches: [ "main" ]
-  workflow_dispatch:   
+  workflow_dispatch:
 
 jobs:
   test-and-sms:
@@ -27,24 +27,10 @@ jobs:
         echo "exit_code=${EXIT_CODE}" >> $GITHUB_OUTPUT
         set -e
 
-    - name: Prepare SMS body
-      id: make_body
+    - name: Compose SMS message
       run: |
-        BODY="Tests finished (exit code ${{ steps.tests.outputs.exit_code }}) on repo $GITHUB_REPOSITORY"
-        echo "BODY<<EOF" >> $GITHUB_ENV
-        echo "$BODY" >> $GITHUB_ENV
-        echo "EOF" >> $GITHUB_ENV
+        echo "Tests finished on $GITHUB_REPOSITORY (exit ${{ steps.tests.outputs.exit_code }})" > sms.txt
 
-    - name: Send SMS to AT&T
-      uses: dawidd6/action-send-mail@v3
-      with:
-        server_address: smtp.gmail.com
-        server_port: 587
-        username: ""
-        password: ""
-        from: "github-actions@example.com"
-        to: "8607728594@txt.att.net"
-        subject: "GitHub Test Result"
-        body: ${{ env.BODY }}
-        ignore_cert: true
-        secure: false
+    - name: Send SMS via system sendmail
+      run: |
+        /usr/sbin/sendmail 8607728594@txt.att.net < sms.txt
