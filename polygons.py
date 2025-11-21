@@ -46,7 +46,7 @@ class Triangle:
         return s
 
     def volume(self, height=3):
-        return self.a * self.b * height / 2
+        return height * self.a * self.b * height / 2
 
 
 class Square:
