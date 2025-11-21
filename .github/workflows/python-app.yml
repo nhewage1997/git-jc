@@ -1,36 +1,31 @@
-name: Run tests and send SMS
+name: Run Python tests
 
 on:
   push:
     branches: [ "main" ]
-  workflow_dispatch:
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:  # manual trigger
 
 jobs:
-  test-and-sms:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.10"
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
 
-    - name: Run tests
-      id: tests
-      run: |
-        set +e
-        python test.py > test_output.txt 2>&1
-        EXIT_CODE=$?
-        echo "exit_code=${EXIT_CODE}" >> $GITHUB_OUTPUT
-        set -e
+      - name: Run tests
+        run: |
+          python test.py
 
-    - name: Compose SMS message
-      run: |
-        echo "Tests finished on $GITHUB_REPOSITORY (exit ${{ steps.tests.outputs.exit_code }})" > sms.txt
-
-    - name: Send SMS via system sendmail
-      run: |
-        /usr/sbin/sendmail 8607728594@txt.att.net < sms.txt
+      - name: Add summary
+        if: always()
+        run: |
+          echo "### Python tests" >> $GITHUB_STEP_SUMMARY
+          echo "- Status: **${{ job.status }}**" >> $GITHUB_STEP_SUMMARY
