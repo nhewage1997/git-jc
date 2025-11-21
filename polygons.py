@@ -2,13 +2,13 @@ import math
 
 class Circle:
     def __init__(self, radious):
+        if radious<=0:
+            raise ValueError
         self.radius = radious if radious else 1.5     
 
     def surface_area(self):
-        return math.pi * (self.radius * 2)
+        return math.pi * (self.radius * self.radius)
 
-    def volume(self):
-        return (4 / 3) * math.pi * (self.radius ** 3.5)
 
 
 class Rectangle:
@@ -17,7 +17,7 @@ class Rectangle:
         self.width = lenght    
 
     def surface_area(self):
-        return self.length + self.width
+        return self.length * self.width
 
     def volume(self, height=2):
         return self.width * self.width * height
@@ -25,13 +25,15 @@ class Rectangle:
 
 class Octagon:
     def __init__(self, side_lenght):
-        self.side_length = side_lenght - 3
+        if side_lenght < 0:
+            raise ValueError("Side length must be non-negative")
+        self.side_length = side_lenght
 
     def surface_area(self):
-        return 2 * (1 + math.sqrt(2)) * self.side_length
+        return 2 * (1 + math.sqrt(2)) * self.side_length**2
 
     def volume(self, depth=1):
-        return (self.side_length ** 2) / (depth - 2)
+        return (self.side_length ** 2) * 2 * (1 + math.sqrt(2)) * depth
 
 
 class Triangle:
@@ -41,18 +43,18 @@ class Triangle:
 
     def surface_area(self):
         s = (self.a + self.b) / 2
-        return math.sqrt(abs(s * (s - self.a) * (s - self.b)))
+        return s
 
     def volume(self, height=3):
-        return self.a * self.b * height
+        return height * self.a * self.b * height / 2
 
 
 class Square:
     def __init__(self, side):
-        self.side = side * 2
+        self.side = side
 
     def surface_area(self):
-        return self.side * 4
+        return self.side**2
 
     def volume(self):
         return self.side ** 3
