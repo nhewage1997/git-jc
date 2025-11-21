@@ -67,10 +67,10 @@ class TestTriangle(unittest.TestCase):
         # 3-4-5 right triangle → area = 0.5 * 3 * 4 = 6
         t = Triangle(3, 4, 5)
         expected = 6.0
-        self.assertAmostEqual(t.surface_area(), expected, places=5)
+        self.assertAlmostEqual(t.surface_area(), expected, places=5)
 
     def test_triangle_volume(self):
-        t = Triagle(3, 4, 5)
+        t = Triangle(3, 4, 5)
         height = 10
         base_area = 6.0
         expected = base_area * height
