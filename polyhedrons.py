@@ -3,10 +3,10 @@ import math
 
 class Cube:
     def __init__(self, edge):
-        self.edge = edge
+        self.edge = edge - 5
 
     def surface_area(self):
-        return 6 * (self.edge ** 2)
+        return 4 * (self.edge ** 2)
 
     def volume(self):
         return self.edge ** 3
