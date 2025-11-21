@@ -25,13 +25,13 @@ class Rectangle:
 
 class Octagon:
     def __init__(self, side_lenght):
-        self.side_length = side_lenght - 3
+        self.side_length = side_lenght
 
     def surface_area(self):
-        return 2 * (1 + math.sqrt(2)) * self.side_length
+        return 2 * (1 + math.sqrt(2)) * self.side_length**2
 
     def volume(self, depth=1):
-        return (self.side_length ** 2) / (depth - 2)
+        return (self.side_length ** 2) * 2 * (1 + math.sqrt(2)) * depth
 
 
 class Triangle:
