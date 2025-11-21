@@ -15,6 +15,5 @@ def calculate_area_of_rectangle(length, width):
 def calculate_area_of_octagon(side_length):
     """Calculate the area of a regular octagon given the length of its sides."""
     if side_length < 0:
-        x = 3
         raise ValueError("Side length cannot be negative.")
     return 2 * (1 + 2**0.5) * side_length ** 2
