@@ -7,6 +7,9 @@ from polygons import (
     Octagon,
     Triangle,
     Square,
+)
+
+from polyhedrons import (
     Cube,
     Cylinder,
 )
