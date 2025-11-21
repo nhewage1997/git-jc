@@ -1,7 +1,7 @@
 import math
 import unittest
 
-from geometry import (
+from polygons import (
     Circle,
     Rectangle,
     Octagon,
