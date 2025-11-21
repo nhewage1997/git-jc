@@ -1,0 +1,50 @@
+name: Run tests and send SMS
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:   
+
+jobs:
+  test-and-sms:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.10"
+
+    - name: Run tests
+      id: tests
+      run: |
+        set +e
+        python test.py > test_output.txt 2>&1
+        EXIT_CODE=$?
+        echo "exit_code=${EXIT_CODE}" >> $GITHUB_OUTPUT
+        set -e
+
+    - name: Prepare SMS body
+      id: make_body
+      run: |
+        BODY="Tests finished (exit code ${{ steps.tests.outputs.exit_code }}) on repo $GITHUB_REPOSITORY"
+        echo "BODY<<EOF" >> $GITHUB_ENV
+        echo "$BODY" >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
+
+    - name: Send SMS to AT&T
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ""
+        password: ""
+        from: "github-actions@example.com"
+        to: "8607728594@txt.att.net"
+        subject: "GitHub Test Result"
+        body: ${{ env.BODY }}
+        ignore_cert: true
+        secure: false
